@@ -1,0 +1,113 @@
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perceptron Interativo com Explicação Visual</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+    <body style="margin: 0">
+
+  <h1>Perceptron Interativo</h1>
+  
+  <div class="main-container">
+    <div class="canvas-section">
+      <p class="description">
+        Clique no canvas para adicionar pontos de treinamento. 
+        Use os controles ao lado para alternar entre classes e treinar o perceptron.
+        Observe como ele aprende a separar as duas classes!
+      </p>
+      
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: red;"></div>
+          <span>Classe Vermelha (+1)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: blue;"></div>
+          <span>Classe Azul (-1)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: var(--success);"></div>
+          <span>Linha de Decisão</span>
+        </div>
+      </div>
+      
+      <canvas id="canvas" width="500" height="400" class=""></canvas>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="totalPoints">0</div>
+          <div class="stat-label">Pontos</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="accuracy">0%</div>
+          <div class="stat-label">Precisão</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="controls-section">
+      <h2>Controles</h2>
+      
+      <div class="controls-grid">
+        <button id="classBtn" onclick="toggleClass()" class="btn-warning">
+          Classe: <span id="classLabel">Vermelha</span>
+        </button>
+        <button onclick="startTraining()" id="trainBtn" class="btn-success">
+          Treinar
+        </button>
+        <button onclick="pauseTraining()" id="pauseBtn" class="btn-secondary" disabled="">Pausar</button>
+        <button onclick="resetCanvas()" class="btn-secondary">
+          Resetar
+        </button>
+      </div>
+
+      <div class="parameters-panel">
+        <h3 style="margin-top: 0; color: var(--text-primary);">Parâmetros</h3>
+        <div class="parameter-row">
+          <span>Peso W₁:</span>
+          <span class="parameter-value" id="weight1">-0.538</span>
+        </div>
+        <div class="parameter-row">
+          <span>Peso W₂:</span>
+          <span class="parameter-value" id="weight2">0.638</span>
+        </div>
+        <div class="parameter-row">
+          <span>Bias:</span>
+          <span class="parameter-value" id="biasValue">-0.365</span>
+        </div>
+        <div class="parameter-row">
+          <span>Taxa de Aprendizado:</span>
+          <span class="parameter-value">0.1</span>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+      </div>
+      <div style="text-align: center; font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+        Progresso: <span id="progressText">0/0</span>
+      </div>
+
+      <div class="status-panel slide-in">
+        <div id="statusMessage" class="">Sistema resetado! Adicione novos pontos para começar.</div>
+      </div>
+
+      <div class="info-section">
+        <h3 style="margin-top: 0;">Como funciona?</h3>
+        <p style="font-size: 14px; margin-bottom: 8px;">
+          O <strong>perceptron</strong> é um modelo de neurônio artificial que aprende a classificar dados através de ajustes iterativos nos pesos e bias.
+        </p>
+        <p style="font-size: 14px; margin: 0;">
+          A cada erro, os parâmetros são ajustados proporcionalmente ao erro, permitindo que o modelo melhore sua precisão gradualmente.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tooltip" id="tooltip" style="left: 126px; top: 332px;">Posição: (-1, 13)<br>Predição: Azul</div>
+
+<script src="main.js"></script>
+</body>
+</html>
